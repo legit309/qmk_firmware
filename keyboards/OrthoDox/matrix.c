@@ -49,7 +49,7 @@ static const int ROWS_PER_HAND = MATRIX_ROWS/2;
 static uint8_t error_count = 0;
 
 static const uint8_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
-static const uint8_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
+static const uint16_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
 
 /* matrix state(1:on, 0:off) */
 static matrix_row_t matrix[MATRIX_ROWS];
