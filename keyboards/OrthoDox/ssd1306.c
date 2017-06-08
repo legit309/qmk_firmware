@@ -47,7 +47,7 @@
 #define MatrixCols (DisplayWidth / FontWidth)
 
 struct CharacterMatrix {
-  uint8_t display[MatrixRows][MatrixCols];
+  uint16_t display[MatrixRows][MatrixCols];
   uint8_t *cursor;
   bool dirty;
 };
@@ -172,7 +172,7 @@ static void clear_display(void) {
     goto done;
   }
   for (uint8_t row = 0; row < MatrixRows; ++row) {
-    for (uint8_t col = 0; col < DisplayWidth; ++col) {
+    for (uint16_t col = 0; col < DisplayWidth; ++col) {
       i2c_master_write(0);
     }
   }
@@ -282,7 +282,7 @@ static void matrix_write_char(struct CharacterMatrix *matrix, uint8_t c) {
   if (c == '\n') {
     // Clear to end of line from the cursor and then move to the
     // start of the next line
-    uint8_t cursor_col = (matrix->cursor - &matrix->display[0][0]) % MatrixCols;
+    uint16_t cursor_col = (matrix->cursor - &matrix->display[0][0]) % MatrixCols;
 
     while (cursor_col++ < MatrixCols) {
       matrix_write_char_inner(matrix, ' ');
@@ -354,11 +354,11 @@ static void matrix_render(struct CharacterMatrix *matrix) {
   }
 
   for (uint8_t row = 0; row < MatrixRows; ++row) {
-    for (uint8_t col = 0; col < MatrixCols; ++col) {
+    for (uint16_t col = 0; col < MatrixCols; ++col) {
       const uint8_t *glyph = font + (matrix->display[row][col] * (FontWidth - 1));
 
       for (uint8_t glyphCol = 0; glyphCol < FontWidth - 1; ++glyphCol) {
-        uint8_t colBits = pgm_read_byte(glyph + glyphCol);
+        uint16_t colBits = pgm_read_byte(glyph + glyphCol);
         i2c_master_write(colBits);
       }
 
