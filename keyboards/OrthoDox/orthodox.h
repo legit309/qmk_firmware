@@ -1,5 +1,5 @@
-#ifndef LETS_SPLIT_H
-#define LETS_SPLIT_H
+#ifndef ORTHODOX_H
+#define ORTHODOX_H
 
 #ifdef SUBPROJECT_rev1
     #include "rev1.h"
