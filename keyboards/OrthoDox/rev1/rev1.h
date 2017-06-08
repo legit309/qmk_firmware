@@ -1,7 +1,7 @@
 #ifndef REV1_H
 #define REV1_H
 
-#include "../lets_split.h"
+#include "../orthodox.h"
 
 //void promicro_bootloader_jmp(bool program);
 #include "quantum.h"
