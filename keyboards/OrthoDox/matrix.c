@@ -95,7 +95,7 @@ uint8_t matrix_rows(void)
 }
 
 inline
-uint8_t matrix_cols(void)
+uint16_t matrix_cols(void)
 {
     return MATRIX_COLS;
 }
@@ -125,7 +125,7 @@ uint8_t _matrix_scan(void)
     // Right hand is stored after the left in the matirx so, we need to offset it
     int offset = isLeftHand ? 0 : (ROWS_PER_HAND);
 
-    for (uint8_t i = 0; i < ROWS_PER_HAND; i++) {
+    for (uint16_t i = 0; i < ROWS_PER_HAND; i++) {
         select_row(i);
         _delay_us(30);  // without this wait read unstable value.
         matrix_row_t cols = read_cols();
